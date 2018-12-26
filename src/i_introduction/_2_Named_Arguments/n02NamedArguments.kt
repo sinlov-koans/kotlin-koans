@@ -5,7 +5,9 @@ import util.TODO
 import util.doc2
 
 // default values for arguments
-fun bar(i: Int, s: String = "", b: Boolean = true) {}
+fun bar(i: Int, s: String = "", b: Boolean = true) {
+    println("i = $i, s = $s, b = $b")
+}
 
 fun usage() {
     // named arguments
@@ -25,6 +27,7 @@ fun todoTask2(): Nothing = TODO(
 
 fun task2(collection: Collection<Int>): String {
 //    todoTask2()
+    usage()
     val sb = StringBuilder()
     sb.append("{")
     sb.append(collection.joinToString())
