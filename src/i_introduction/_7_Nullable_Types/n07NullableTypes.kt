@@ -5,11 +5,15 @@ import util.doc7
 
 fun test() {
     val s: String = "this variable cannot store null references"
+    println("s = ${s}")
     val q: String? = null
+    println("q = ${q}")
 
     if (q != null) q.length      // you have to check to dereference
     val i: Int? = q?.length      // null
+    println("i = ${i}")
     val j: Int = q?.length ?: 0  // 0
+    println("j = ${j}")
 }
 
 fun todoTask7(client: Client?, message: String?, mailer: Mailer): Nothing = TODO(
@@ -25,8 +29,17 @@ fun todoTask7(client: Client?, message: String?, mailer: Mailer): Nothing = TODO
 fun sendMessageToClient(
         client: Client?, message: String?, mailer: Mailer
 ) {
-    todoTask7(client, message, mailer)
+//    todoTask7(client, message, mailer)
+//    test()
+    if (client == null || message == null) return
+
+    val personalInfo = client.personalInfo ?: return
+
+    val email = personalInfo.email ?: return
+
+    mailer.sendMessage(email, message)
 }
+
 
 class Client (val personalInfo: PersonalInfo?)
 class PersonalInfo (val email: String?)
